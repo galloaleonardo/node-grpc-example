@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package users_package;
+
+import "google/protobuf/empty.proto";
+
+message User {
+    int32 id = 1;
+    string name = 2;
+    int32 age = 3;
+}
+
+message UserIdRequest {
+    int32 id = 1;
+}
+
+service UserService {
+  rpc getAll(google.protobuf.Empty) returns (stream User) {}
+  rpc get(UserIdRequest) returns (User) {}
+  // rpc unaryCall(ClientMessage) returns (ServerMessage) {}
+  // rpc serverStreamingCall(ClientMessage) returns (stream ServerMessage) {}
+  // rpc clientStreamingCall(stream ClientMessage) returns (ServerMessage) {}
+  // rpc bidirectionalStreamingCall(stream ClientMessage) returns (stream ServerMessage) {}
+}
